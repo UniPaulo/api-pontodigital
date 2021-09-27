@@ -39,7 +39,7 @@ jobs:
         application_name: Apipontodigital
         environment_name: Apipontodigital-dev
         region: sa-east-1
-        version_label: ${{ githiub.run_id }}
+        version_label: ${{ github.run_id }}
         version_description: ${{ github.sha }}
         deployment_package: ${{ github.workspace }}/out.zip
 
