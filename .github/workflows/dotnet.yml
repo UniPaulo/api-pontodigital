@@ -37,7 +37,7 @@ jobs:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         application_name: pontodigital
-        environment_name: pontodigital-dev
+        environment_name: pontodigital-env-2
         region: sa-east-1
         version_label: ${{ github.run_id }}
         version_description: ${{ github.sha }}
