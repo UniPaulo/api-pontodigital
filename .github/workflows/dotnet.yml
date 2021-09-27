@@ -22,13 +22,13 @@ jobs:
       run: dotnet build --configuration Release --no-restore
       
     - name: Test
-
       run: dotnet test --no-build --verbosity normal
-    - name: Publish
-    
+      
+    - name: Publish   
       run: dotnet publish -c Release -o '${{ github.workspace }}/out'
+      
     - name: Zip Package
-      run:
+      run:  |
         cd ${{ github.workspace }}/out
         zip -r ${{ github.workspace }}/out.zip *
     - name: Deploy to EB
