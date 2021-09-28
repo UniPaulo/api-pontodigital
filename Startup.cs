@@ -20,6 +20,8 @@ using Api.PontoDigital.Repository.PessoaFisicaLogin;
 using Api.PontoDigital.Repository.PessoaJuridicaFisica;
 using Amazon.S3;
 using Api.PontoDigital.Class;
+using System.Threading;
+using System.Globalization;
 
 namespace Api.PontoDigital
 {
@@ -110,6 +112,8 @@ namespace Api.PontoDigital
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "V1");
                 c.RoutePrefix = string.Empty;
             });
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("pt-BR");
         }
 
         /// <summary>
