@@ -10,6 +10,8 @@ using Api.PontoDigital.Models.API;
 using Api.PontoDigital.Repository.PessoaJuridicaFisica;
 using System.Linq;
 using Api.PontoDigital.Class;
+using System.Threading;
+using System.Globalization;
 
 namespace Api.PontoDigital.Controllers
 {

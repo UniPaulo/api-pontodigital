@@ -12,16 +12,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Api.PontoDigital.Repository.PessoaFisicaLogin;
 using Api.PontoDigital.Repository.PessoaJuridicaFisica;
 using Amazon.S3;
 using Api.PontoDigital.Class;
-using System.Threading;
 using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace Api.PontoDigital
 {
@@ -79,6 +76,7 @@ namespace Api.PontoDigital
                 o.DefaultApiVersion = new ApiVersion(1, 0);
 
             });
+            services.AddLocalization();
         }
 
         /// <summary>
@@ -112,8 +110,16 @@ namespace Api.PontoDigital
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "V1");
                 c.RoutePrefix = string.Empty;
             });
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("pt-BR");
+
+            var supportedCultures = new[]{ new CultureInfo("pt-BR")
+};
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("pt-BR"),
+                SupportedCultures = supportedCultures,
+                FallBackToParentCultures = false
+            });
+            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CreateSpecificCulture("pt-BR");
         }
 
         /// <summary>
