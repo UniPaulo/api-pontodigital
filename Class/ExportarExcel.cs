@@ -4,10 +4,9 @@ using Amazon.S3.Model;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
+using System.Security.Policy;
 using System.Threading.Tasks;
 
 namespace Api.PontoDigital.Class
@@ -125,8 +124,15 @@ namespace Api.PontoDigital.Class
 
 			string nome_arquivo = $"Relatório de Ponto - {DateTime.Now:dd-MM-yyyy}";
 
-
-			string CaminhoFisicoExport = System.Reflection.Assembly.GetExecutingAssembly().Location.Replace("bin\\Debug\\netcoreapp3.1\\Api.PontoDigital.dll", "Excel\\");
+			string CaminhoFisicoExport = string.Empty;
+			if (Environment.MachineName.StartsWith("DESKTOP"))
+            {
+				CaminhoFisicoExport = System.Reflection.Assembly.GetExecutingAssembly().Location.Replace("bin\\Debug\\netcoreapp3.1\\Api.PontoDigital.dll", "Excel\\");
+			}
+            else
+            {
+				CaminhoFisicoExport = "C:\\Excel\\";
+			}
 			string Arquivo = CaminhoFisicoExport + nome_arquivo + ".xlsx";
 
 			FileStream file = new FileStream(Arquivo, FileMode.Create, FileAccess.Write);
