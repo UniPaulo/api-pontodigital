@@ -124,8 +124,8 @@ namespace Api.PontoDigital.Class
 
 			string nome_arquivo = $"Relatório de Ponto - {DateTime.Now:dd-MM-yyyy}";
 
-			string CaminhoFisicoExport = string.Empty;
-			if (Environment.MachineName.StartsWith("DESKTOP"))
+            string CaminhoFisicoExport;
+            if (Environment.MachineName.StartsWith("DESKTOP"))
             {
 				CaminhoFisicoExport = System.Reflection.Assembly.GetExecutingAssembly().Location.Replace("bin\\Debug\\netcoreapp3.1\\Api.PontoDigital.dll", "Excel\\");
 			}
