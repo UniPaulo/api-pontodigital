@@ -79,6 +79,16 @@ namespace Api.PontoDigital.Controllers
                                 if (Ponto?.DataHoraInicioIntervalo == null)
                                 {
                                     Ponto.DataHoraInicioIntervalo = DateTime.Now;
+                                    DateTime CargaHoraria = new DateTime();
+                                    CargaHoraria = CargaHoraria.AddDays(Ponto.DataHoraInicioIntervalo.Value.Day - 1);
+                                    CargaHoraria = CargaHoraria.AddMonths(Ponto.DataHoraInicioIntervalo.Value.Month - 1);
+                                    CargaHoraria = CargaHoraria.AddYears(Ponto.DataHoraInicioIntervalo.Value.Year - 1);
+
+                                    TimeSpan AntesIntervalo = (TimeSpan)(Ponto.DataHoraInicioIntervalo - Ponto.DataHoraInicioExpediente);
+
+                                    CargaHoraria = CargaHoraria.Add(AntesIntervalo);
+                                    Ponto.CargaHoraria = CargaHoraria;
+
                                     await _operacaoPontoRepository.AtualizarPonto(Ponto);
                                     retorno.Mensagem = "Segundo Ponto do Dia Realizado com Sucesso, tenha um ótimo intervalo hoje.";
                                     return Ok(retorno);
@@ -103,7 +113,7 @@ namespace Api.PontoDigital.Controllers
 
                                     TimeSpan AntesIntervalo = (TimeSpan)(Ponto.DataHoraInicioIntervalo - Ponto.DataHoraInicioExpediente);
                                     TimeSpan DepoisIntervalo = (TimeSpan)(Ponto.DataHoraFimExpediente - Ponto.DataHoraFimIntervalo);
-                                    TimeSpan Total = DepoisIntervalo + AntesIntervalo;
+                                    TimeSpan Total = (TimeSpan)(DepoisIntervalo + AntesIntervalo);
 
                                     CargaHoraria = CargaHoraria.Add(Total);
 

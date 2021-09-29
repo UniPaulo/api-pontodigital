@@ -120,7 +120,7 @@ namespace Api.PontoDigital.Controllers
                                 TimeSpan TotalCargaraHoraria = DepoisIntervalo + AntesIntervalo;
                                 CargaHoraria = CargaHoraria.Add(TotalCargaraHoraria);
                                 #endregion
-                                if(item.CargaHoraria != null)
+                                if (item.CargaHoraria != null)
                                 {
                                     DateTime HoraExtra = (DateTime)item.DataHoraInicioExpediente;
                                     TimeSpan Total = (TimeSpan)(item.CargaHoraria - CargaHoraria);
@@ -140,7 +140,12 @@ namespace Api.PontoDigital.Controllers
                                         extra = $"{Total.Hours}:{Total.Minutes.ToString()?.Replace("-", "")}";
                                     }
                                     relatorio.HoraExtra = extra;
-                                }                               
+                                }
+                                else
+                                {
+                                    relatorio.CargaHoraria = "00:00";
+                                    relatorio.HoraExtra = "00:00";
+                                }
                             }
 
                             #endregion
@@ -222,6 +227,11 @@ namespace Api.PontoDigital.Controllers
                                                 extra = $"{Total.Hours}:{Total.Minutes.ToString()?.Replace("-", "")}";
                                             }
                                             relatorio.HoraExtra = extra;
+                                        }
+                                        else
+                                        {
+                                            relatorio.CargaHoraria = "00:00";
+                                            relatorio.HoraExtra = "00:00";
                                         }
                                     }
 
