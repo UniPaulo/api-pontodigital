@@ -7,6 +7,7 @@ using System;
 using System.Data;
 using System.IO;
 using System.Security.Policy;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Api.PontoDigital.Class
@@ -25,9 +26,9 @@ namespace Api.PontoDigital.Class
 		/// <param name="configuration"></param>
 		public ExportarExcel(IConfiguration configuration)
 		{
-			_bucketName = configuration?.GetValue<string>("AWSBucket");
-			_keyName = configuration?.GetValue<string>("AWSKey");
-			_secretName = configuration?.GetValue<string>("AWSSecret");
+			_bucketName = Encoding.UTF8.GetString(Convert.FromBase64String(configuration?.GetValue<string>("Bucket")));
+			_keyName = Encoding.UTF8.GetString(Convert.FromBase64String(configuration?.GetValue<string>("Key")));
+			_secretName = Encoding.UTF8.GetString(Convert.FromBase64String(configuration?.GetValue<string>("Secret")));
 		}
 		/// <summary>
 		/// ExportarExcelAsync
