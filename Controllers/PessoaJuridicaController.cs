@@ -8,6 +8,7 @@ using Api.PontoDigital.Models.SQL;
 using Api.PontoDigital.Repository.PessoaFisica;
 using Api.PontoDigital.Repository.PessoaJuridica;
 using Api.PontoDigital.Repository.PessoaJuridicaFisica;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -49,6 +50,7 @@ namespace Api.PontoDigital.Controllers
         /// </summary>
         /// <param name="CPF"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpGet("ListarEmpresas/{CPF}")]
         public async Task<IActionResult> GetByPessoaFisica(string CPF)
         {
@@ -89,6 +91,7 @@ namespace Api.PontoDigital.Controllers
         /// </summary>
         /// <param name="IdPessoaJuridica"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpGet("{IdPessoaJuridica:long}")]
         public async Task<IActionResult> GetById([FromRoute] long IdPessoaJuridica)
         {
@@ -112,6 +115,7 @@ namespace Api.PontoDigital.Controllers
         /// Método que Insere a Pessoa Jurídica
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] PessoaJuridica pessoaJuridica)
         {
@@ -154,6 +158,7 @@ namespace Api.PontoDigital.Controllers
         /// Método que Atualiza a Pessoa Jurídica
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] PessoaJuridica pessoaJuridica)
         {

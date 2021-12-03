@@ -12,6 +12,7 @@ using System.Linq;
 using Api.PontoDigital.Class;
 using System.Threading;
 using System.Globalization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Api.PontoDigital.Controllers
 {
@@ -51,6 +52,7 @@ namespace Api.PontoDigital.Controllers
         /// Método que Busca o Relatório de Histórico de Ponto
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpGet("{Filtro}/{DataInicio?}/{DataFim?}/{IdPessoaJuridica?}")]
         public async Task<IActionResult> GetRelatorio([FromRoute] string Filtro, [FromRoute] DateTime? DataInicio = null, [FromRoute] DateTime? DataFim = null, [FromRoute] long? IdPessoaJuridica = null)
         {

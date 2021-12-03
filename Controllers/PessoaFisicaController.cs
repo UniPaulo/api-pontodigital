@@ -9,6 +9,7 @@ using Api.PontoDigital.Repository.PessoaFisica;
 using Api.PontoDigital.Repository.PessoaFisicaLogin;
 using Api.PontoDigital.Repository.PessoaJuridica;
 using Api.PontoDigital.Repository.PessoaJuridicaFisica;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -52,6 +53,7 @@ namespace Api.PontoDigital.Controllers
         /// </summary>
         /// <param name="IdPessoaFisica"></param>
         /// <returns>Objeto da Pessoa Física</returns>
+        [Authorize]
         [HttpGet("{IdPessoaFisica:long}")]
         public async Task<IActionResult> GetById([FromRoute] long IdPessoaFisica)
         {
@@ -77,6 +79,7 @@ namespace Api.PontoDigital.Controllers
         /// </summary>
         /// <param name="nome"></param>
         /// <returns>Objeto da Pessoa Física</returns>
+        [Authorize]
         [HttpGet("Nome/{nome}")]
         public async Task<IActionResult> GetByNome([FromRoute] string nome)
         {
@@ -101,6 +104,7 @@ namespace Api.PontoDigital.Controllers
         /// </summary>
         /// <param name="cpf"></param>
         /// <returns>Objeto da Pessoa Física</returns>
+        [Authorize]
         [HttpGet("CPF/{cpf}")]
         public async Task<IActionResult> GetByCPF([FromRoute] string cpf)
         {
@@ -152,6 +156,7 @@ namespace Api.PontoDigital.Controllers
         /// Método que Insere a Pessoa Física
         /// </summary>
         /// <returns>Objeto da Pessoa Física</returns>
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] PessoaFisica pessoaFisica)
         {
@@ -242,6 +247,7 @@ namespace Api.PontoDigital.Controllers
         /// Método que Atualiza a Pessoa Física
         /// </summary>
         /// <returns>Objeto da Pessoa Física</returns>
+        [Authorize]
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] PessoaFisica pessoaFisica)
         {

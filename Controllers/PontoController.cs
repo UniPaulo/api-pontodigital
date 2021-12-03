@@ -7,6 +7,7 @@ using Api.PontoDigital.Models.SQL;
 using Api.PontoDigital.Repository.OperacaoPonto;
 using Api.PontoDigital.Repository.PessoaFisica;
 using Api.PontoDigital.Repository.PessoaJuridica;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -44,6 +45,7 @@ namespace Api.PontoDigital.Controllers
         /// Método que Realiza o Ponto
         /// </summary>
         /// <returns>Objeto da Pessoa Física</returns>
+        [Authorize]
         [HttpPost("RealizarPonto")]
         public async Task<IActionResult> RealizarPonto([FromBody] Ponto ponto)
         {

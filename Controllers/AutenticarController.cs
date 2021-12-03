@@ -7,6 +7,7 @@ using Api.PontoDigital.Repository.PessoaFisica;
 using Api.PontoDigital.Repository.PessoaFisicaLogin;
 using Api.PontoDigital.Repository.PessoaJuridica;
 using Api.PontoDigital.Repository.PessoaJuridicaFisica;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using static Api.PontoDigital.Models.SQL.PESSOA_JURIDICA_FISICA;
@@ -51,6 +52,7 @@ namespace Api.PontoDigital.Controllers
         /// </summary>
         /// <param name="autenticar"></param>
         /// <returns>Resultado da Autenticação</returns>
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Autenticar autenticar)
         {
