@@ -65,8 +65,7 @@ namespace Api.PontoDigital
             services.AddControllers();
             services.AddCors(options =>
             {
-                options.AddPolicy(
-                    name: "AllowOrigin",
+                options.AddDefaultPolicy(
                     builder => {
                         builder.AllowAnyOrigin()
                                 .AllowAnyMethod()
@@ -82,6 +81,9 @@ namespace Api.PontoDigital
                 {
                     ValidateIssuer = true,
                     ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+
                     ValidAudience = Configuration["Jwt:Audience"],
                     ValidIssuer = Configuration["Jwt:Issuer"],
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
@@ -143,7 +145,7 @@ namespace Api.PontoDigital
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseCors("AllowOrigin");
+            app.UseCors();
 
             if (env.IsDevelopment())
             {
