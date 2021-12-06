@@ -51,7 +51,7 @@ namespace Api.PontoDigital.Controllers
         /// <param name="CPF"></param>
         /// <returns></returns>
         [Authorize]
-        [HttpGet("ListarEmpresas/{CPF}")]
+        [HttpGet("")]
         public async Task<IActionResult> GetByPessoaFisica(string CPF)
         {
             try

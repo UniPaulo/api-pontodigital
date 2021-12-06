@@ -132,7 +132,7 @@ namespace Api.PontoDigital.Class
 			}
             else
             {
-				CaminhoFisicoExport = "C:\\Excel\\";
+				CaminhoFisicoExport = Directory.Exists("C:\\Excel\\") ? "C:\\Excel\\" : Directory.CreateDirectory("C:\\Excel\\").FullName;
 			}
 			string Arquivo = CaminhoFisicoExport + nome_arquivo + ".xlsx";
 
